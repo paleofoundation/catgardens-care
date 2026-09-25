@@ -1,13 +1,13 @@
 {
   "id": "/",
   "name": "CatGardens Care",
-  "short_name": "CatGardens",
+  "short_name": "CatGardens Care",
   "description": "Daily care and medical records for sanctuary animals.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#f5f7f7",
-  "theme_color": "#173e34",
+  "background_color": "#f7f9f5",
+  "theme_color": "#234d31",
   "lang": "en",
   "icons": [
     {

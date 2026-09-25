@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   applicationName: "CatGardens Care",
   other: { "apple-mobile-web-app-capable": "yes" },
   manifest: "/manifest.webmanifest",
-  appleWebApp: { capable: true, title: "CatGardens", statusBarStyle: "default" },
+  appleWebApp: { capable: true, title: "CatGardens Care", statusBarStyle: "default" },
   icons: {
     icon: [{ url: "/favicon.ico", sizes: "any" }, { url: "/favicon.svg", type: "image/svg+xml" }, { url: "/favicon-32.png", sizes: "32x32", type: "image/png" }],
     shortcut: "/favicon.ico",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = {width: "device-width", initialScale: 1, viewportFit: "cover", themeColor: "#173e34"};
+export const viewport: Viewport = {width: "device-width", initialScale: 1, viewportFit: "cover", themeColor: "#234d31"};
 
 export default function RootLayout({
   children,

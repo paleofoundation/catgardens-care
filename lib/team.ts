@@ -1,0 +1,7 @@
+import {database} from './db';
+import {getChatGPTUser} from '@/app/chatgpt-auth';
+import type {Member} from './care-features';
+export const SANCTUARY_OWNER='6ff91a8d-32c1-4070-8055-4a1a01f6d8ed';
+export function reject(message:string,status=403):never{throw Object.assign(new Error(message),{status})}
+export async function teamContext(){const user=await getChatGPTUser();if(!user)reject('Sign in to access sanctuary records.',401);const db=database();if(user.userId===SANCTUARY_OWNER){await db.batch([db.prepare('INSERT OR IGNORE INTO members(id,owner,name,email,role,identity_id) VALUES(?,?,?,?,?,?)').bind('karen',SANCTUARY_OWNER,'Karen',user.email,'owner',user.userId),...['Chanda','Kimberly'].map(name=>db.prepare('INSERT OR IGNORE INTO members(id,owner,name,role) VALUES(?,?,?,?)').bind(name.toLowerCase(),SANCTUARY_OWNER,name,name==='Chanda'?'caretaker':'volunteer'))])}
+let me=await db.prepare('SELECT * FROM members WHERE owner=? AND (identity_id=? OR (email=? AND identity_id IS NULL)) AND active=1').bind(SANCTUARY_OWNER,user.userId,user.email).first<any>();if(!me)reject('Your account has not been linked to this sanctuary. Ask Karen to add your sign-in email in Team & points.');if(!me.identity_id){await db.prepare('UPDATE members SET identity_id=? WHERE id=? AND identity_id IS NULL').bind(user.userId,me.id).run();me=await db.prepare('SELECT * FROM members WHERE id=? AND identity_id=?').bind(me.id,user.userId).first<any>();if(!me)reject('This team profile is linked to another account.');}return {user,owner:SANCTUARY_OWNER,me:me as Member,db};}
