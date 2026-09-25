@@ -1,0 +1,41 @@
+[
+  {
+    "file": "orange-tabby.jpg",
+    "subject": "Orange tabby kitten",
+    "photographer": "Ahmet Sali",
+    "source_page": "https://unsplash.com/photos/orange-tabby-cat-y8Tqsd2ANCg",
+    "image_url": "https://images.unsplash.com/photo-1573477344138-053a5ce612fa?w=600&q=80&fm=jpg&fit=crop",
+    "recommended_object_position": "50% 42%",
+    "path": "/workspace/scratch/catcare-assets/orange-tabby.jpg",
+    "bytes": 97279,
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "reuse": "Free commercial and noncommercial use; attribution appreciated, not required. Do not sell unmodified copies or compile a competing image service."
+  },
+  {
+    "file": "tuxedo-cat.jpg",
+    "subject": "Black and white tuxedo cat",
+    "photographer": "Klaudia Pyc",
+    "source_page": "https://unsplash.com/photos/black-and-white-tuxedo-cat-JoFezZklcmE",
+    "image_url": "https://images.unsplash.com/photo-1610284686391-bb10a7d4193f?w=600&q=80&fm=jpg&fit=crop",
+    "recommended_object_position": "55% 50%",
+    "path": "/workspace/scratch/catcare-assets/tuxedo-cat.jpg",
+    "bytes": 20190,
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "reuse": "Free commercial and noncommercial use; attribution appreciated, not required. Do not sell unmodified copies or compile a competing image service."
+  },
+  {
+    "file": "gray-cat.jpg",
+    "subject": "Gray tabby cat",
+    "photographer": "Erica Lin",
+    "source_page": "https://unsplash.com/photos/a-gray-cat-lounges-by-a-window-qOpITVA57mI",
+    "image_url": "https://images.unsplash.com/photo-1749762796566-1cf8f9ae7fa2?w=600&q=80&fm=jpg&fit=crop",
+    "recommended_object_position": "40% 45%",
+    "path": "/workspace/scratch/catcare-assets/gray-cat.jpg",
+    "bytes": 94278,
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "reuse": "Free commercial and noncommercial use; attribution appreciated, not required. Do not sell unmodified copies or compile a competing image service."
+  }
+]
