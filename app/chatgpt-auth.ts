@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { database } from "@/lib/db";
 
 export type ChatGPTUser = {
   userId: string;
@@ -20,9 +21,27 @@ const CALLBACK_PATH = "/callback";
 
 export async function getChatGPTUser(): Promise<ChatGPTUser | null> {
   const requestHeaders = await headers();
-  const userId = requestHeaders.get(USER_ID_HEADER);
-  const email = requestHeaders.get(USER_EMAIL_HEADER);
-  if (!userId || !email) return null;
+  const platformId = requestHeaders.get(USER_ID_HEADER);
+  const email = requestHeaders.get(USER_EMAIL_HEADER)?.trim().toLowerCase();
+  if (!email) return null;
+
+  // The private Sites access gate authenticates the visitor and forwards this
+  // verified email. Some deployed dispatch versions omit the user-id header.
+  // Resolve that authenticated identity to a stable local key, never use an
+  // email address or a client-supplied field as a record ownership key.
+  const db = database();
+  let identity = await db.prepare("SELECT id,platform_id FROM identities WHERE email=?").bind(email).first<{id:string;platform_id:string|null}>();
+  if (!identity) {
+    const stableId = platformId || crypto.randomUUID();
+    await db.prepare("INSERT OR IGNORE INTO identities(id,email,platform_id) VALUES(?,?,?)").bind(stableId,email,platformId).run();
+    identity = await db.prepare("SELECT id,platform_id FROM identities WHERE email=?").bind(email).first<{id:string;platform_id:string|null}>();
+  }
+  if (!identity) throw new Error("Your account could not be loaded. Please reload the app.");
+  if (platformId && identity.platform_id && identity.platform_id !== platformId) return null;
+  if (platformId && !identity.platform_id) {
+    await db.prepare("UPDATE identities SET platform_id=? WHERE id=? AND platform_id IS NULL").bind(platformId,identity.id).run();
+  }
+  const userId = identity.id;
 
   const encodedFullName = requestHeaders.get(USER_FULL_NAME_HEADER);
   const fullName =
