@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "CatGardens Care",
-  description: "Daily care, medication rounds, and medical records for sanctuary animals.",
+  description: "The CatGardens sanctuary app for daily care, medication rounds, and animal medical records.",
   applicationName: "CatGardens Care",
   other: { "apple-mobile-web-app-capable": "yes" },
   manifest: "/manifest.webmanifest",
