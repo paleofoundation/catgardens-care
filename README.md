@@ -18,3 +18,11 @@ Hosting is owner-private. API routes enforce the platform-authenticated identity
 ## Runtime
 
 Use the Sites build and hosting workflow. Generate database changes with the existing db:generate script. Keep applied migrations immutable. Source files include no application credentials or clinical production data.
+
+## GitHub handoff
+
+Source and all five recovered Sites revisions are preserved in the private repository [paleofoundation/catgardens-care](https://github.com/paleofoundation/catgardens-care). See [Kimberly’s handoff guide](docs/kimberly-handoff.md) for local setup, access, hosting, and the game integration boundary.
+
+On macOS, use Node 22.13+ and pnpm 11.25.0, then `pnpm install --frozen-lockfile`, `pnpm run dev`, and `pnpm run build`. The inherited `install:ci` wrapper requires Linux tooling.
+
+Operations records internal activity and private receipts, then delivers separately approved summaries to the game through a versioned, authenticated publishing queue. GitHub pushes do not deploy this existing Site. See the handoff guide for roles, runtime setup and verification limits.
